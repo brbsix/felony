@@ -58,7 +58,7 @@ app.on('ready', () => {
     'show': false,
     'width': 295,
     'height': 435,
-    'title-bar-style': 'hidden',
+    'titleBarStyle': 'hidden',
   })
 
   mainWindow.loadURL(`file://${ __dirname }/app/app.html`)
