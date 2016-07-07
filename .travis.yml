@@ -1,0 +1,25 @@
+language: node_js
+node_js: node
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-4.8
+      - g++-4.8
+      - libgnome-keyring-dev
+
+deploy:
+  provider: releases
+  api_key:
+    secure: bbBuMAh0ZKEzctSo9Z5MITRqOQMwvzNrF5bWIuiXtZL90Ts/8N/gHixH1SOgz4fb221tu6qZKSUTk5Btmlfc286nbKq8+aF9IC6vSpAAUhAr1JujPg4p1x/7ue53YxPD4E0U8D9iDRRXg2koctOQAfcQed94Q2bbym1cPb5I8P1KzcbOsQhtrmyMzG5zQwcPrIhVrMGB7qNH/aOiSwagt9HjPqDD24+n3VuhsvVC9uBlT5hqaO6v5TkmiwrxBucpc+Xq29KLudVIgflBXSqnRQBU8IEE1AnV1LuhXtqjZoEezrNOyJIk5bQq/JWbxxII/l2eAF8DbB0IxnOp318XtYYLF5+gmjWHRwMHJRMTCoUt3dPFyBkMvonJjFc2IZdANzohSTRCMAz/FFkBlE4ItwMwTSt3Ep/KjUZQlmkmA5JYbdWYJwEkc1LRmZfX6+xJhYXOLUE5AHIKGrK8gaohi6CuleB6x71DMeyAlPixiCvRAe6CKpXmrLmacEYKgTLPjXS09hWmZlwwrVI8IcsAtjmTML9a0vqDLk05jm9VTdXThzdxNCeENACzPYbFplybMirkN2LiFyOLz177bqdy5F9lp2OeeYNMSngT6tUiMPXISRL4sxlPXWZ9RVfoeLtvrE6TbQ+CcVZ//tRT8B/qEuvO8JtFedATbusGcf1baYs=
+  file: release/linux-x64/Felony-linux-x64.zip
+  on:
+    repo: brbsix/felony
+    tags: true
+
+install: npm install
+script: npm run package
+before_deploy: (cd release/linux-x64/ && zip -r Felony-linux-x64.zip Felony-linux-x64/)
